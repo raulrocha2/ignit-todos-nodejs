@@ -24,6 +24,7 @@ function checksExistsUserAccount(request, response, next) {
   return next();
 }
 
+// Midleware 
 function getTodoById(request, response, next) {
   const { id } = request.params;
   const { user } = request;
@@ -61,7 +62,7 @@ app.post('/users', (request, response) => {
 
   user = users.find((user) => user.username === username);
 
-  return response.status(201).send(user)
+  return response.status(201).json(user)
 });
 
 app.get('/todos', checksExistsUserAccount, (request, response) => {
@@ -84,7 +85,7 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
   }
 
   user.todos.push(todo);
-  return response.status(201).send(todo);
+  return response.status(201).json(todo);
 });
 
 app.put('/todos/:id', checksExistsUserAccount, getTodoById, (request, response) => {
@@ -111,7 +112,7 @@ app.delete('/todos/:id', checksExistsUserAccount, getTodoById, (request, respons
 
   user.todos.splice(indexOfTodo, 1);
 
-  return response.status(204).send();
+  return response.status(204).json();
 });
 
 module.exports = app;
