@@ -32,7 +32,7 @@ describe('Todos', () => {
       ]),
     )
   });
-
+  
   it('should be able to create a new todo', async () => {
     const userResponse = await request(app)
       .post('/users')
@@ -205,4 +205,5 @@ describe('Todos', () => {
 
     expect(response.body.error).toBeTruthy();
   });
+ 
 });
